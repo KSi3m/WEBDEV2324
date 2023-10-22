@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+		<head>
+			<meta charset="UTF-8">
+			<meta name="viewport" content="width=device-width, initial-scale=1.0">
+			<title>Calculator</title>
+			
+			<script>
+				const equationHistory = []; 
+				const a = 0
+				const b = 0
+				function gen() {
+					const main = document.getElementById("main")
+					for(let j=0;j<10;j++) {
+						let element = document.createElement("button")
+						element.setAttribute("id",j) // generujemy id unikalne dla każdego elementu
+						element.setAttribute("class","field") // przypisujemy klasę
+						element.setAttribute("onclick","user_input("+j+")") // omijamy konieczność referencji na funkcję
+						element.innerText = j
+						//key0.onclick = show
+						element.dataset.value = j
+						main.appendChild(element) //zagnieżdżamy utworzone elementy w div o id game
+					}
+					for (var i of ['+','-','*','/','.'])  {
+						let element = document.createElement("button")
+						element.setAttribute("id",i) // generujemy id unikalne dla każdego elementu
+						element.setAttribute("class","field") // przypisujemy klasę
+						element.setAttribute("onclick","user_input('"+i+"')") // omijamy konieczność referencji na funkcję
+						element.innerText = i
+						//key0.onclick = show
+						//key0.dataset.value = 0
+						main.appendChild(element) //zagnieżdżamy utworzone elementy w div o id game
+					}
+					let element = document.createElement("button")
+					element.setAttribute("id",'C')
+					element.setAttribute("class","field") // przypisujemy klasę
+					element.setAttribute("onclick","deleteOneChar()") // omijamy konieczność referencji na funkcję
+					element.innerText = 'C'
+					main.appendChild(element)
+					
+					element = document.createElement("button")
+					element.setAttribute("id",'CE')
+					element.setAttribute("class","field") // przypisujemy klasę
+					element.setAttribute("onclick","clearDisplay()") // omijamy konieczność referencji na funkcję
+					element.innerText = 'CE'
+					main.appendChild(element)
+					
+					element = document.createElement("button")
+					element.setAttribute("id",'=')
+					element.setAttribute("class","field") // przypisujemy klasę
+					element.setAttribute("onclick","calculateResult()") // omijamy konieczność referencji na funkcję
+					element.innerText = '='
+					
+					main.appendChild(element)
+					
+				}
+				
+				function show() {
+					alert(this.dataset.value)
+				}
+				
+				function user_input(char) {
+					if (isSafeToAppend(char)) {
+						document.getElementById('display').value += char;
+					}
+				}
+				function clearDisplay() {
+					document.getElementById('display').value = '';
+				}
+				function deleteOneChar() {
+					if (document.getElementById('display').length === 0) {
+						return; // No characters to delete
+					}
+					document.getElementById('display').value = document.getElementById('display').value.slice(0, -1)
+				}
+				function calculateResult() {
+					const expression = document.getElementById('display').value;
+					if (expression.length === 0) {
+						return; 
+					}
+					
+				    const operators = ['+', '-', '*', '/','.'];
+					const lastChar = document.getElementById('display').value.slice(-1);
+					
+					if (operators.includes(lastChar)){
+						return; 
+					}
+					
+					try {
+						const result = eval(expression);
+						document.getElementById('display').value = result;
+						equationHistory.push({ equation: expression, result: result });
+					} catch (error) {
+					document.getElementById('display').value = 'Error';
+					}
+				}
+				function isSafeToAppend(char) {			
+					console.log(document.getElementById('display').value)
+					const operators = ['+', '-', '*', '/','.'];
+					if (operators.includes(char)){
+						if (document.getElementById('display').value === '') {
+							return false; 
+						}
+						const lastChar = document.getElementById('display').value.slice(-1);
+						console.log(lastChar)
+						return !operators.includes(lastChar) && char !== lastChar;
+					}
+					return true;
+				}
+				
+				function showHistory() {
+					const historyList = document.getElementById('historyList');
+					historyList.innerHTML = ''; 
+
+					for (const item of equationHistory) {
+						const listItem = document.createElement('li');
+						listItem.textContent = `${item.equation} = ${item.result}`;
+						historyList.appendChild(listItem);
+					}
+
+					document.getElementById('history').style.display = 'block';
+				}
+
+			</script>
+		</head>
+		
+		<body onload="gen()">
+			<div id="main">
+			
+			<input type="text" id="display" disabled>
+			</div>
+			<button onclick="showHistory()">Show History</button>
+			<div id="history">
+				<h2>Equation History</h2>
+				<ul id="historyList"></ul>
+			</div>
+		</body>
+</html>

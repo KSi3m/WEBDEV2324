@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kółko i krzyżyk</title>
+    <style>
+
+		.field {
+			background-color: gray;
+			border: solid 2px black;
+			width: 3em;
+			margin: 5px;
+			height: 3em;
+			float: left;
+		}
+		.game {
+            display: grid;
+            grid-template-columns: repeat(3, 50px);
+            grid-template-rows: repeat(3, 50px);
+            grid-gap: 2px;
+        }
+
+    </style>
+</head>
+<body onload="init()">
+		
+    <h1>Kółko i krzyżyk</h1>
+    <p id="result"></p>
+	
+	
+
+    <script>
+		function init(){
+			for(let i=0;i<3;i++) {
+				for(let j=0;j<3;j++) {
+					 let element = document.createElement("div")
+					 element.setAttribute("id","f_"+i+j)
+					 element.setAttribute("class","field")
+					 element.setAttribute("onclick","makeMove("+i+","+j+")")
+					 element.innerText = '-'
+					 document.getElementById("game").appendChild(element)
+				 }
+			}
+		}
+	
+        var board = [[null, null, null], [null, null, null], [null, null, null]];
+        let currentPlayer = true;
+		let myDictionary = {"true":"X", "false":"O"};
+        let movesLeft = 9;
+		const resultElement = document.getElementById('result');
+		resultElement.innerText = "Player's "+myDictionary[currentPlayer]+" move";
+
+        function makeMove(row, col) {
+            if (board[row][col] === null) {
+                board[row][col] = myDictionary[currentPlayer];
+				document.getElementById("f_"+row+col).innerText = myDictionary[currentPlayer];
+                movesLeft -= 1;
+
+                if (checkIfGameEnded(row, col)) {
+                    resultElement.innerText = myDictionary[currentPlayer]+' wins!';
+                    gameOver();
+                } else if (movesLeft === 0) {
+                    resultElement.textContent = "It's a draw!";
+                } else {
+                    currentPlayer = !currentPlayer;
+					resultElement.innerText = "Player's "+myDictionary[currentPlayer]+" move";
+                }
+            }
+        }
+
+        function checkIfGameEnded(row, col) {
+            const player_symbol = board[row][col];
+            temp = 0;
+			for(let i=0;i<3;i++){
+				if (board[row][i] === player_symbol) 
+					temp += 1
+			}
+			if (temp === 3) return true;
+			else temp = 0
+			
+			for(let i=0;i<3;i++){
+				if (board[i][col] === player_symbol)
+					temp += 1
+			}
+         
+			if (temp === 3) return true;
+			else temp = 0
+			
+            if (board[0][0] === player_symbol && board[1][1] === player_symbol && board[2][2] === player_symbol) return true;
+            if (board[0][2] === player_symbol && board[1][1] === player_symbol && board[2][0] === player_symbol) return true;
+            return false;
+        }
+
+        function gameOver() {
+			for(let i=0;i<3;i++) {
+				for(let j=0;j<3;j++) {
+					const element = document.getElementById("f_" + i + j);
+					element.onclick = null;
+				 }
+			}
+        }
+		
+		function resetBoard()
+		{
+			for(let i=0;i<3;i++) {
+				for(let j=0;j<3;j++) {
+					const element = document.getElementById("f_" + i + j);
+					element.innerText = '-'
+					element.setAttribute("onclick","makeMove("+i+","+j+")")
+				 }
+			}
+			board = [[null, null, null], [null, null, null], [null, null, null]];
+			currentPlayer = true;
+			movesLeft = 9;
+			document.getElementById('result').innerText = " ";
+		}
+    </script>
+	
+	
+	
+	<div class="game" id="game" >
+		
+	</div>
+	<br>
+	<button onclick="resetBoard()">ResetBoard</button>
+</body>
+</html>
