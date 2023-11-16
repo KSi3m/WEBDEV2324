@@ -1,0 +1,467 @@
+swagger: "2.0"
+info:
+  version: "0.0.1"
+  title: Hello World App
+# during dev, should point to your local machine
+host: localhost:10010
+# basePath prefixes all resource paths 
+basePath: /
+# 
+schemes:
+  # tip: remove http to make production-grade
+  - http
+  - https
+# format of bodies a client can send (Content-Type)
+consumes:
+  - application/json
+# format of the responses to the client (Accepts)
+produces:
+  - application/json
+paths:
+  /users:
+    get:
+      summary: Get List Of All Users
+      produces:
+        - application/json
+      operationId: getUsers
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/User"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+            
+    post:
+      summary: Create a new user
+      produces:
+        - application/json
+      operationId: createUser
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: "#/definitions/UserInput"
+      responses:
+        201:
+          description: User created successfully
+          schema:
+            $ref: "#/definitions/User"
+        400:
+          description: Bad request
+  /users/{userId}:
+    get:
+      summary: Get details about User
+      produces:
+        - application/json
+      operationId: getUser
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          type: integer
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: "#/definitions/User"
+        404:
+          description: User of given ID not found
+
+    put:
+      summary: Edit User
+      produces:
+        - application/json
+      operationId: editUser
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          type: integer
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: "#/definitions/UserInput"
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: "#/definitions/User"
+        404:
+          description: User of given ID not found
+
+    delete:
+      summary: Delete User
+      produces:
+        - application/json
+      operationId: deleteUser
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          type: integer
+      responses:
+        204:
+          description: No Content
+        404:
+          description: User of given ID not found
+  
+  /photos:
+    get:
+      summary: Get all photos
+      produces:
+        - application/json
+      operationId: getPhotos
+      responses:
+        200:
+          description: Success
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Photo"
+
+    post:
+      summary: Upload a new photo
+      consumes:
+        - multipart/form-data
+      produces:
+        - application/json
+      operationId: uploadPhoto
+      parameters:
+        - name: file
+          in: formData
+          type: file
+          description: The photo file to upload
+        - name: title
+          in: formData
+          type: string
+          description: The title of the photo
+      responses:
+        201:
+          description: Photo uploaded successfully
+          schema:
+            $ref: "#/definitions/Photo"
+        400:
+          description: Bad request
+
+  /photos/{photoId}:
+    get:
+      summary: Get a photo by ID
+      produces:
+        - application/json
+      operationId: getPhoto 
+      parameters:
+        - name: photoId
+          in: path
+          required: true
+          type: integer
+      responses:
+        200:
+          description: Success
+          schema:
+            $ref: "#/definitions/Photo"
+        404:
+          description: Photo not found
+
+    put:
+      summary: Update a photo by ID
+      consumes:
+        - multipart/form-data
+      produces:
+        - application/json
+      operationId: updatePhoto
+      parameters:
+        - name: photoId
+          in: path
+          required: true
+          type: integer
+        - name: file
+          in: formData
+          type: file
+          description: The new photo file
+        - name: title
+          in: formData
+          type: string
+          description: The new title of the photo
+      responses:
+        200:
+          description: Photo updated successfully
+          schema:
+            $ref: "#/definitions/Photo"
+        400:
+          description: Bad request
+        404:
+          description: Photo not found
+
+    delete:
+      summary: Delete a photo by ID
+      produces:
+        - application/json
+      operationId: deletePhoto
+      parameters:
+        - name: photoId
+          in: path
+          required: true
+          type: integer
+      responses:
+        204:
+          description: Photo deleted successfully
+        404:
+          description: Photo not found
+  
+  
+  /galleries:
+    get:
+      summary: Get all galleries
+      produces:
+        - application/json
+      operationId: getGalleries
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Gallery"
+
+    post:
+      summary: Create a new gallery
+      produces:
+        - application/json
+      operationId: createGallery
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: "#/definitions/GalleryInput"
+      responses:
+        201:
+          description: Gallery created successfully
+          schema:
+            $ref: "#/definitions/Gallery"
+        400:
+          description: Bad request
+
+  /galleries/{galleryId}:
+    get:
+      summary: Get a gallery by ID
+      produces:
+        - application/json
+      operationId: getGallery
+      parameters:
+        - name: galleryId
+          in: path
+          required: true
+          type: integer
+      responses:
+        200:
+          description: Success
+          schema:
+            $ref: "#/definitions/Gallery"
+        404:
+          description: Gallery not found
+
+    put:
+      summary: Update a gallery by ID
+      produces:
+        - application/json
+      operationId: updateGallery
+      parameters:
+        - name: galleryId
+          in: path
+          required: true
+          type: integer
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: "#/definitions/GalleryInput"
+      responses:
+        200:
+          description: Gallery updated successfully
+          schema:
+            $ref: "#/definitions/Gallery"
+        400:
+          description: Bad request
+        404:
+          description: Gallery not found
+
+    delete:
+      summary: Delete a gallery by ID
+      produces:
+        - application/json
+      operationId: deleteGallery
+      parameters:
+        - name: galleryId
+          in: path
+          required: true
+          type: integer
+      responses:
+        204:
+          description: Gallery deleted successfully
+        404:
+          description: Gallery not found
+
+  /galleries/{galleryId}/photos:
+    get:
+      summary: Get a list of photos
+      produces:
+        - application/json
+      operationId: getPhotosOfGallery
+      parameters:
+        - name: galleryId
+          in: path
+          required: true
+          type: integer
+      responses:
+        200:
+          description: Sukces
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Photo"
+
+    post:
+      summary: Add new photo to gallery
+      produces:
+        - application/json
+      operationId: addPhotoToGallery
+      parameters:
+        - name: galleryId
+          in: path
+          required: true
+          type: integer
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: "#/definitions/PhotoInput"
+      responses:
+        201:
+          description: Created
+          schema:
+            $ref: "#/definitions/Photo"
+        404:
+          description: Gallery not found.
+          
+  /galleries/{galleryId}/photos/{photoId}:      
+     delete:
+      summary: Delete photo from gallery
+      produces:
+        - application/json
+      operationId: deletePhotoFromGallery
+      parameters:
+        - name: galleryId
+          in: path
+          required: true
+          type: integer
+        - name: photoId
+          in: path
+          required: true
+          type: integer  
+          
+      responses:
+        204:
+          description: No content
+          schema:
+            $ref: "#/definitions/Photo"
+        404:
+          description: Gallery not found.
+  
+  /hello:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: hello_world
+    get:
+      description: Returns 'Hello' to the caller
+      # used as the method name of the controller
+      operationId: hello
+      parameters:
+        - name: name
+          in: query
+          description: The name of the person to whom to say hello
+          required: false
+          type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/HelloWorldResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /swagger:
+    x-swagger-pipe: swagger_raw
+# complex objects have schema definitions
+definitions:
+  HelloWorldResponse:
+    required:
+      - message
+    properties:
+      message:
+        type: string
+  ErrorResponse:
+    required:
+      - message
+    properties:
+      message:
+        type: string
+  User:
+    type: object
+    properties:
+      id:
+        type: integer
+      username:
+        type: string
+
+  UserInput:
+    type: object
+    properties:
+      username:
+        type: string
+      password:
+        type: string
+  Gallery:
+    type: object
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      description:
+        type: string
+
+  GalleryInput:
+    type: object
+    properties:
+      name:
+        type: string
+      description:
+        type: string
+
+  Photo:
+    type: object
+    properties:
+      id:
+        type: integer
+      title:
+        type: string
+      url:
+        type: string
+
+  PhotoInput:
+    type: object
+    properties:
+      title:
+        type: string
+      url:
+        type: string
