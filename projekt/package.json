@@ -1,0 +1,21 @@
+{
+  "name": "app_skeleton",
+  "version": "1.0.0",
+  "description": "apka zeby zaliczyc jako tako",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "mieszko",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "express": "^4.18.2",
+    "hbs": "^4.2.0",
+    "short-uuid": "^4.2.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}

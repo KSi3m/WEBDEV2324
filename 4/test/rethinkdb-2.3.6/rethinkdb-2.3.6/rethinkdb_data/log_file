@@ -1,0 +1,35 @@
+2023-11-16T19:03:25.263768900 0.035784s notice: In recursion: removing file 'E:\\STUD\\9_SEM\\WEBDEV\\WEBDEV2324\\4\\test\\rethinkdb-2.3.6\\rethinkdb-2.3.6\\rethinkdb_data\\tmp'
+2023-11-16T19:03:25.266769100 0.039607s warn: Trying to delete non-existent file 'E:\\STUD\\9_SEM\\WEBDEV\\WEBDEV2324\\4\\test\\rethinkdb-2.3.6\\rethinkdb-2.3.6\\rethinkdb_data\\tmp'
+2023-11-16T19:03:25.271763700 0.043790s notice: Initializing directory E:\\STUD\\9_SEM\\WEBDEV\\WEBDEV2324\\4\\test\\rethinkdb-2.3.6\\rethinkdb-2.3.6\\rethinkdb_data
+2023-11-16T19:03:25.273764900 0.045911s info: Creating a default database for your convenience. (This is because you ran 'rethinkdb' without 'create', 'serve', or '--join', and the directory 'E:\\STUD\\9_SEM\\WEBDEV\\WEBDEV2324\\4\\test\\rethinkdb-2.3.6\\rethinkdb-2.3.6\\rethinkdb_data' did not already exist or is empty.)
+2023-11-16T19:03:25.273764901 0.046172s notice: Running rethinkdb 2.3.6-windows (MSC 190024215)...
+2023-11-16T19:03:25.273764902 0.046327s notice: Running on 6.2.9200 (Windows 8, Server 2012)
+2023-11-16T19:03:25.273764903 0.046445s notice: Loading data from directory E:\\STUD\\9_SEM\\WEBDEV\\WEBDEV2324\\4\\test\\rethinkdb-2.3.6\\rethinkdb-2.3.6\\rethinkdb_data
+2023-11-16T19:03:25.580770200 0.353109s info: Automatically using cache size of 100 MB
+2023-11-16T19:03:25.580770201 0.353126s warn: Cache size does not leave much memory for server and query overhead (available memory: 522 MB).
+2023-11-16T19:03:25.580770202 0.353136s warn: Cache size is very low and may impact performance.
+2023-11-16T19:03:25.588774300 0.361005s notice: Listening for intracluster connections on port 29015
+2023-11-16T19:03:25.591781500 0.363999s notice: Listening for client driver connections on port 28015
+2023-11-16T19:03:25.591781501 0.364282s notice: Listening for administrative HTTP connections on port 8080
+2023-11-16T19:03:25.591781502 0.364284s notice: Listening on cluster address: 127.0.0.1
+2023-11-16T19:03:25.591781503 0.364288s notice: Listening on driver address: 127.0.0.1
+2023-11-16T19:03:25.591781504 0.364289s notice: Listening on http address: 127.0.0.1
+2023-11-16T19:03:25.591781505 0.364292s notice: To fully expose RethinkDB on the network, bind to all addresses by running rethinkdb with the `--bind all` command line option.
+2023-11-16T19:03:25.591781506 0.364296s notice: Server ready, "DESKTOP_KNJQDOO_itl" f74ff7a3-4582-422a-942f-8af078f11ff6
+2023-11-16T19:03:26.708081500 1.480584s warn: Problem when checking for new versions of RethinkDB: HTTP request to update.rethinkdb.com failed.
+2023-11-16T19:03:53.796910400 28.569688s info: Table 0dc929c7-b1d0-4611-b4db-1ab9785b985a: Starting a new Raft election for term 1.
+2023-11-16T19:03:53.800906600 28.573761s info: Table 0dc929c7-b1d0-4611-b4db-1ab9785b985a: Added replica on this server.
+2023-11-16T19:03:53.808906000 28.581387s info: Table 0dc929c7-b1d0-4611-b4db-1ab9785b985a: This server is Raft leader for term 1. Latest log index is 0.
+2023-11-16T19:18:38.918695700 913.691007s notice: Removing file E:\\STUD\\9_SEM\\WEBDEV\\WEBDEV2324\\4\\test\\rethinkdb-2.3.6\\rethinkdb-2.3.6\\rethinkdb_data\\0dc929c7-b1d0-4611-b4db-1ab9785b985a
+2023-11-16T19:18:38.918695701 913.691020s info: Table 0dc929c7-b1d0-4611-b4db-1ab9785b985a: Deleted the table.
+2023-11-16T19:19:25.721263200 960.494122s info: Table e3f793c0-8352-4c5f-b235-0af8f9c65b4c: Starting a new Raft election for term 1.
+2023-11-16T19:19:25.723275900 960.495351s info: Table e3f793c0-8352-4c5f-b235-0af8f9c65b4c: Added replica on this server.
+2023-11-16T19:19:25.723275901 960.495853s info: Table 0692cdbf-166a-44c7-9913-5763c4caaf3e: Starting a new Raft election for term 1.
+2023-11-16T19:19:25.724263400 960.496266s info: Table 0692cdbf-166a-44c7-9913-5763c4caaf3e: Added replica on this server.
+2023-11-16T19:19:25.727263400 960.499805s info: Table e3f793c0-8352-4c5f-b235-0af8f9c65b4c: This server is Raft leader for term 1. Latest log index is 0.
+2023-11-16T19:19:25.728262900 960.500614s info: Table 0692cdbf-166a-44c7-9913-5763c4caaf3e: This server is Raft leader for term 1. Latest log index is 0.
+2023-11-16T19:34:04.581304700 1839.353353s notice: Server got Control-C; shutting down...
+2023-11-16T19:34:04.581304701 1839.354159s notice: Shutting down client connections...
+2023-11-16T19:34:04.597332400 1839.369498s notice: All client connections closed.
+2023-11-16T19:34:04.597332401 1839.369525s notice: Shutting down storage engine... (This may take a while if you had a lot of unflushed data in the writeback cache.)
+2023-11-16T19:34:04.616358500 1839.388755s notice: Storage engine shut down.

@@ -1,4 +1,7 @@
 'use strict';
+var model = require('../model/model.js');
+
+
 module.exports = {
 	listImages,
 	createImage,
@@ -7,16 +10,25 @@ module.exports = {
 	deleteImage
 };
 
-
-var id_counter = 0;
-var testData = {
+var testData;
+testData = new model.Image({
 	id: "0123456789abcd",
 	title: "Testowy obrazek",
 	description: "Opis do obrazka",
 	date: "2017-11-09T10:20:00.214Z",
 	path: "/library/images/",
 	size: 1024
-};
+});
+
+var id_counter = 0;
+/* var testData = {
+	id: "0123456789abcd",
+	title: "Testowy obrazek",
+	description: "Opis do obrazka",
+	date: "2017-11-09T10:20:00.214Z",
+	path: "/library/images/",
+	size: 1024
+}; */
 var createImageTestData = {
 	"id": "Sample text",
 	"title": "Sample text",
@@ -54,7 +66,16 @@ function createImage(req, res, next) {
 			"path": createImageTestData['path']})
 	
 	console.log(images);
-	res.json(createImageTestData);
+	var newImage = new model.Image({
+		id: "0123456789abcd",
+		title: createImageTestData['title'],
+		description: createImageTestData['description'],
+		date: new Date().toISOString(),
+		path: createImageTestData['path'],
+		size: 1024,
+		idGallery: 'gallery_id'
+	});
+	res.json(newImage);
 }
 function readImage(req, res, next) {
 	res.json(testData);
