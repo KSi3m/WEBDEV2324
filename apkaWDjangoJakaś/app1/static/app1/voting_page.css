@@ -1,0 +1,67 @@
+input[name=q]{
+	width: 400px ;
+	height: 30px ;
+}
+
+ul {
+	list-style: none;
+
+}
+li {
+	display: block;
+}
+ul li::before {
+	appearance: none;
+	content: " ";
+	display: inline-block;
+	margin-right: -30px;
+	padding: 0.8rem;
+
+}
+ul li:hover::before {
+	appearance: none;
+	content: " ";
+	display: inline-block;
+	margin-right: -30px;
+	padding: 0.8rem;
+}
+
+
+input[type="radio"] {
+	position: relative;
+	padding: 0;
+	margin-right: 10px;
+}
+input[type="radio"]:before {
+	content: '🎵';
+	margin-right: 10px;
+	display: inline-block;
+	margin-top: -2px;
+	width: 20px;
+	height: 20px;
+	background: #fcfcfc;
+	border: 1px solid #aaa;
+	border-radius: 2px;
+}
+input[type="radio"]:hover:before {
+	background: #2F66A9;
+}
+input[type="radio"]:focus:before {
+	box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.12);
+}
+input[type="radio"]:checked:before {
+	background: #2F66A9;
+	border-color: #2F66A9;
+}
+input[type="radio"]:disabled {
+	color: #b8b8b8;
+}
+input[type="radio"]:disabled:before {
+	box-shadow: none;
+	background: #ddd;
+}
+input[type="radio"]:checked:after {
+	position: relative;
+	background: white;
+	box-shadow: 2px 0 0 white, 4px 0 0 white, 4px -2px 0 white, 4px -4px 0 white, 4px -6px 0 white, 4px -8px 0 white;
+}

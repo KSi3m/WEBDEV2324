@@ -1,0 +1,70 @@
+.button {
+	text-align: center;
+	display: inline-flex;
+	height: 85px;
+	width: 320px;
+	border: 2px solid #BFC0C0;
+	margin: 20px 20px 40px 40px;
+	color: #BFC0C0;
+	text-transform: uppercase;
+	text-decoration: none;
+	font-size: .8em;
+	letter-spacing: 1.2px;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden;
+}
+
+
+#button-1, #button-2, #button-3 {
+	position: relative;
+	background: #282828;
+	overflow: hidden;
+	cursor: pointer;
+}
+
+#button-1 a, #button-2 a, #button-3 a {
+	position: relative;
+	left: 0;
+	transition: all .35s ease-Out;
+}
+
+#button-image {
+	width: 100%;
+	height: 100%;
+	background: #BFC0C0;
+	left: -320px;
+	position: absolute;
+	padding: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: all .35s ease-Out;
+	bottom: 0;
+}
+
+#button-1 img {
+	width: 220px;
+	height: 120px;
+}
+
+#button-2 img{
+	width: 120px;
+	height: 70px;
+}
+#button-3 img{
+	width: 54px;
+	height: 50px;
+}
+
+#button-1:hover #button-image, 
+#button-2:hover #button-image,
+#button-3:hover #button-image{
+	left: 0;
+}
+
+#button-1:hover a, 
+#button-2:hover a, 
+#button-3:hover a {
+	left: 300px;
+}

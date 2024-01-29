@@ -1,0 +1,29 @@
+{% extends 'basic_template.html' %}
+{% block title %} Error Page {% endblock %}
+{% block content %}
+{% load static %} 
+
+<div class="flex-container">
+
+  <div class="flex-child error">
+		<p>To see this site you must be logged in!</p>
+		<p>Please <a href="{% url 'login' %}"> log in</a> or <a href="{% url 'signup' %}"> Sign Up </a> </p>
+		<p>Or</p>
+		<p>Return to <a href="{% url 'main' %}">Main page</a></p>
+		
+		
+		<script>
+				var audio = new Audio("{% static "app1/sounds/fail.mp3" %}");
+				audio.oncanplaythrough = function ( ) { }
+				audio.onended = function ( ) { }
+		</script>
+		
+		<div class="radio_player">
+			<img src="{% static "app1/images/wont_play.png" %}" alt="home" onclick="audio.play()" />
+		</div>
+		
+  </div>	
+	
+</div>
+
+{% endblock %}

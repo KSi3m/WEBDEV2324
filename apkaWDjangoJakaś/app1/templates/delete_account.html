@@ -1,0 +1,36 @@
+{% extends 'basic_template.html' %}
+{% block title %} Error Page {% endblock %}
+{% block content %}
+{% load static %} 
+
+<div class="flex-container">
+
+  <div class="flex-child error">
+    {% if user.is_authenticated %}
+			<p> Logged in as: {{ user.username }} </p>
+			<form action="/delete_account/" method="post">
+			   {% csrf_token %}
+			   <div class = "submit-container">
+				  <input type="submit" name="Delete Account" value="Delete Account" onclick="return confirm('Are you sure? Deletion of your account is permanent')">
+		        </div>
+			</form>
+			
+	{% else %}
+		<p>To see this site you must be logged in!</p>
+	{% endif %}
+		{{msg}}
+		<script>
+				var audio = new Audio("{% static "app1/sounds/fail.mp3" %}");
+				audio.oncanplaythrough = function ( ) { }
+				audio.onended = function ( ) { }
+		</script>
+		
+		<div class="radio_player">
+			<img src="{% static "app1/images/user_deletion.png" %}" alt="home" onclick="audio.play()" />
+		</div>
+		
+  </div>	
+	
+</div>
+
+{% endblock %}

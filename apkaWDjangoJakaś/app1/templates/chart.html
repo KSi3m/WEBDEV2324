@@ -1,0 +1,52 @@
+{% extends "basic_template.html" %}
+{% block title %}  Chart {% endblock %}
+{% block content %}
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'app1/chart_style.css' %}">
+
+
+<div class="flex-container">
+
+  <div class="flex-child chart">
+	 <div class="test">
+		 {{ msg|safe }}
+	 </div>
+	 <form action="/latest_chart/" method="post">
+		 {% if '/latest_chart/' in request.path %}
+			{% if user.is_superuser %}
+					{% csrf_token %}
+					<div class="submit-container">
+						<input type="submit" name="Deploy New Chart" value="Deploy New Chart" onclick="return confirm('Are you sure? Deployment of new chart will reset all song votes')">
+					</div>
+			{% endif %}
+		{% endif %}
+   </form>
+	 
+    <a href="{% url 'list_of_past_charts' %}">
+		<div class="submit-container">
+			<input type="submit" name="See The Past Charts" value="See The Past Charts">
+		</div>
+	</a>
+	 
+   <script>
+		var audio = new Audio("{% static "app1/sounds/cassette_sound.mp3" %}");
+		audio.oncanplaythrough = function ( ) { }
+		audio.onended = function ( ) { }
+	</script>
+
+   
+   <div class="radio_player">
+		<img src="{% static "app1/images/cassette-2.png" %}" alt="home" onclick="audio.play ()"/>
+   </div>
+   
+   
+  </div>
+
+</div>
+
+
+
+<hr border: 3px dotted>
+{% endblock %}
+

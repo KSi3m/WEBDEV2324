@@ -1,0 +1,59 @@
+{% extends 'basic_template.html' %}
+{% block title %} MainPage {% endblock %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'app1/welcome_page.css' %}">
+
+
+<div class="flex-container">
+
+  <div class="flex-child main">
+		<h1><p>WELCOME TO THE TOP 20 SONG CHART </p></h1>
+		
+		<a href="{% url "latest_chart" %}">
+			<div class="button" id="button-1">
+				<div id="button-image">
+					<img src="{% static "app1/images/piano.png" %}" alt="" />
+				</div>
+				SEE THE LATEST CHART!
+			</div>
+		</a>
+		<a href="{% url "voting_page" %}">
+			<div class="button" id="button-2">
+				<div id="button-image">
+					<img src="{% static "app1/images/casette.png" %}" alt="" /> 
+				</div>
+				VOTE FOR YOUR FAVOURITE SONGS!
+			</div>
+		</a>
+		<a href="{% url "song_add" %}">
+			<div class="button" id="button-3">
+				<div id="button-image">
+					<img src="{% static "app1/images/plus_sign.png" %}" alt="" />
+				</div>
+				ADD NEW SONG TO THE CHART!
+			</div>
+		</a>
+		
+		
+		<script>
+				var audio = new Audio("{% static "app1/sounds/scratch.mp3" %}");
+				audio.oncanplaythrough = function ( ) { }
+				audio.onended = function ( ) { }
+		</script>
+		
+		<div class="radio_player">
+			<img src="{% static "app1/images/will_play.png" %}" alt="home" onclick="audio.play ()" />
+		</div>
+  </div>
+</div>
+
+
+{% if user.is_authenticated %}
+ <p><a href="{% url 'logout' %}">logout</a></p>
+ Logged in as: {{ user.username }}!
+{% else %}
+ <a href="{% url 'login' %}">login</a> or <a href="{% url 'signup' %}">signup</a>
+{% endif %}
+{% endblock %}
+

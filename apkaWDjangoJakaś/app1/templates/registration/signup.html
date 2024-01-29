@@ -1,0 +1,34 @@
+{% extends 'basic_template.html' %}
+{% block title %}Sign up page{% endblock %}
+{% block content %}
+<style>
+	p {
+		text-align: left;
+	}
+</style>
+
+<h2>Sign up page</h2>
+  
+<div class="flex-container">
+
+   <div class="flex-child singup_form">
+		{% if user.is_authenticated %}
+			<p>Already logged in as: {{ user.username }} !!! If you want to sign up with a different account, please <a href="{% url 'logout' %}"> logout </a> </p>
+		{% else %}
+		  <form method="post">
+			{% csrf_token %}
+			{{ form.as_p }}
+			
+			<div class = "submit-container">
+				<input type="submit" name="Sign up" value="Sign up">
+			</div>
+		  </form>
+		{% endif %}
+  </div>
+</div>
+  
+  
+
+  
+{% endblock %}
+

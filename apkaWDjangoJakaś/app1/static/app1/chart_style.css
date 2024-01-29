@@ -1,0 +1,21 @@
+.test ol {
+	background: black;
+	padding: 50px;
+}
+
+.test li {
+    color: black;
+	background: white;
+	margin: 10px;
+	padding: 10px;
+	letter-spacing: 2px;
+}
+.test li:nth-child(even) {
+    color: #BFC0C0;
+	background:#101010;	
+}
+.test li:nth-child(odd) {
+    color: #BFC0C0;
+	background: #282828;
+	
+}

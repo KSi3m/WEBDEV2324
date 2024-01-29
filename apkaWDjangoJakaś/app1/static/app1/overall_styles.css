@@ -1,0 +1,107 @@
+body {
+	background-color: black;
+	color: white;
+	font-family: Georgia, serif;
+	font-size: 1.0em;
+	text-transform: uppercase;
+    text-decoration: none;
+	
+}
+table, th, td {
+	height: 20 px;
+}
+
+a {
+   color: #BFC0C0;
+   text-decoration: none;
+   letter-spacing: 1px;
+}
+
+
+
+.author_class, .song_title_class, .genre_class{
+	width: 100% !important;
+	height: 10% !important;
+}
+
+input[type=submit] {
+	background: #282828;
+	border: 2px solid;
+	font: inherit;
+	line-height: 1;
+	margin: 0.5em;
+	padding: 1em 2em;
+	color: #808080;
+	border-color: #BFC0C0;
+	transition: 0.25s;
+	text-transform: uppercase;
+
+}
+input[type=submit]:hover,
+input[type=submit]:focus{
+	box-shadow: 0 0.5em 0.5em -0.5em #BFC0C0;
+	transform: translateY(-0.25em);
+	color: #BFC0C0;
+}
+
+
+ul.navbar {
+	list-style-type: none;
+	margin: 0;
+	padding: 20px;
+	overflow: hidden;
+	background-color: #333;
+
+}
+ul.navbar li {
+	display: inline;
+	color: white;
+	text-align: center;
+	padding: 25px 20px;
+	text-decoration: none;
+}
+ul.navbar li a {
+	display: inline;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+
+ul.navbar li a:hover {
+	background-color: #111;
+}
+
+.flex-container {
+	display: flex;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.flex-child {
+	padding: 10px;
+	flex: 1;
+	border: 2px dotted white;
+}
+
+.flex-child:first-child {
+	margin-right: 20px;
+}
+.flex-child:hover {
+	background: #0F0F0F;
+	box-shadow: 0px 0px 20px #363636;
+	transform: translateY(0.25em);
+}
+
+.submit-container {
+	text-align: center;
+	
+}
+
+.radio_player,p {
+	text-align: center;
+
+}
+.radio_player img:hover{
+ 	cursor: cell;
+}

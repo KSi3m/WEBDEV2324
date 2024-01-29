@@ -1,0 +1,34 @@
+<html>
+<head>
+	<title>
+		{% block title %} Title {% endblock %}
+	</title>
+</head>
+
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'app1/overall_styles.css' %}">
+<link rel="shortcut icon" type="image/png" href="{% static 'app1/images/favicon-16x16.png' %}"/>
+<body>
+<ul class="navbar">
+  <li><a href=/> MainPage </a></li>
+  <li><a href=/voting_page> Voting Page  </a></li>
+  <li><a href=/song_add> Add Song </a></li>
+  <li><a href=/latest_chart> Latest Chart </a></li>
+  {% if user.is_authenticated %}
+	<li><a href="{% url 'logout' %}"> Logout </a></li>
+	<li><a href=/delete_account> Delete Account </a></li>
+  {% else %}
+	<li><a href="{% url 'login' %}"> Login </a></li>
+	<li><a href="{% url 'signup' %}"> Sign Up </a></li>
+  {% endif %}
+</ul>
+
+	{% block content %}
+	Main Content
+	{% endblock %}
+	
+	<br><br>
+
+</body>
+</html>

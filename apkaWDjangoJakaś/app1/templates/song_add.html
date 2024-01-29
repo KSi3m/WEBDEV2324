@@ -1,0 +1,44 @@
+{% extends "basic_template.html" %}
+{% block title %} Add new song to database {% endblock %}
+{% block content %}
+{% load static %}
+<div class="flex-container">
+
+  <div class="flex-child add_song_form">
+   <form action="/song_add/" method="post">
+		 {% csrf_token %}
+		 <p>Complete the form </p>
+		 
+		 <table>
+		 {{ form.as_table }}
+		 </table>
+		 
+		 <div class = "submit-container">
+			<input type="submit" name="Add" value="Add">
+		 </div>
+   </form>
+   <br><br>
+   
+   <script>
+		var audio = new Audio("{% static "app1/sounds/dry.mp3" %}");
+		audio.oncanplaythrough = function ( ) { }
+		audio.onended = function ( ) { }
+	</script>
+
+   <div class="radio_player">
+		<img src="{% static "app1/images/sound_waves.png" %}" alt="home"onclick="audio.play ()" />
+   </div>
+  </div>
+</div>
+
+
+<br>
+<hr border: 3px dotted>
+	{% if request.method == "POST" %}
+	<script>
+		alert('{{ msg }}');
+	</script>
+	{% endif %}
+	{{ msg }}
+<hr border: 3px dotted>
+{% endblock %}

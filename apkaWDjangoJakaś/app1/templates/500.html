@@ -1,0 +1,25 @@
+{% extends 'basic_template.html' %}
+{% block title %} 500  {% endblock %}
+{% block content %}
+{% load static %} 
+
+<div class="flex-container">
+
+  <div class="flex-child error">
+
+		<p>ERROR 500</p>
+		<script>
+				var audio = new Audio("{% static "app1/sounds/fail.mp3" %}");
+				audio.oncanplaythrough = function ( ) { }
+				audio.onended = function ( ) { }
+		</script>
+		
+		<div class="radio_player">
+			<img src="{% static "app1/images/wont_play.png" %}" alt="home" onclick="audio.play()" />
+		</div>
+		
+  </div>	
+	
+</div>
+
+{% endblock %}

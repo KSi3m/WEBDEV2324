@@ -1,0 +1,59 @@
+
+{% extends "basic_template.html" %}
+{% block title %} Voting Page {% endblock %}
+{% block content %}
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'app1/voting_page.css' %}">
+
+<div class="flex-container">
+
+  <div class="flex-child songs" style="overflow: auto; width : 595px; height : 800px;" >
+    <form action="/voting_page/" method="post">
+			{% csrf_token %}
+			<h1> Vote below: </h1>
+				{{form}} 
+			<div class="submit-container">
+				<input type="submit" name="Vote" value="Vote">
+			</div>
+	</form>
+  </div>
+  
+  <div class="flex-child search">
+    <p> You can search for your favourite song or artist here </p>
+	 
+		<form action="/voting_page/" method="get">
+		  <input name="q" type="text" placeholder="Search..."> <br>
+		  <div class="submit-container">
+			<input type="submit" name="Search" value="Search">
+		  </div>
+		</form>
+	<p> To search for a specific song of given artist follow this format: <span style="color: green;">"author_name - song_name"</span> </p>	
+	<p> To search for all songs of given artist follow this format: <span style="color: green;">"author_name - " </span></p>	
+		
+		<script>
+				var audio = new Audio("{% static "app1/sounds/cd_scratch.mp3" %}");
+				audio.oncanplaythrough = function ( ) { }
+				audio.onended = function ( ) { }
+		</script>
+		
+		<div class="radio_player">
+			<img src="{% static "app1/images/cd_disk.png" %}" alt="home" onclick="audio.play ()" />
+		</div>
+
+  </div>
+  
+</div>
+
+<hr border: 3px dotted>
+	{% if request.method == "POST" %}
+	<script>
+		alert('{{ msg }}');
+	</script>
+	{% endif %}
+	{{ msg }}
+<hr border: 3px dotted>
+
+
+{% endblock %}
+

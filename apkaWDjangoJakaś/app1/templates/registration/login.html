@@ -1,0 +1,25 @@
+{% extends 'basic_template.html' %}
+{% block title %} Login {% endblock %}
+{% block content %}
+
+<div class="flex-container">
+
+   <div class="flex-child login_form">
+		{% if user.is_authenticated %}
+			<p>Already logged in as: {{ user.username }} !!! </p>
+		{% else %}
+		 <form method="post">
+			{% csrf_token %}
+			{{ form.as_p }}
+			<div class = "submit-container">
+				<input type="submit" name="Log in" value="Log in"> 
+			</div>
+			
+		 </form>
+		{% endif %}
+  </div>
+</div>
+
+
+{% endblock %}
+
