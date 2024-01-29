@@ -1,13 +1,10 @@
 
-    <!doctype html>
-    <html>
-    <head>
-    <title>{{Title}}</title>
-    <meta name="description" content="Our first page">
-    <meta name="keywords" content="html tutorial template">
-    </head>
-    <body>
-  {{Body}}
-    </body>
-    </html>
+{{# each items }}
+    <div>
+        <img src="{{ this.path }}/{{ this.title }}.jpg" alt = "..." width="200">
+        nazwa: {{ this.title }}
+        <br/>
+
+    </div>
+{{/each}}
 
